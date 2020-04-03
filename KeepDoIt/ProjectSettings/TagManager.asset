@@ -42,6 +42,9 @@ TagManager:
   - name: Environment
     uniqueID: 531557531
     locked: 0
+  - name: Conveyor
+    uniqueID: 4064278185
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

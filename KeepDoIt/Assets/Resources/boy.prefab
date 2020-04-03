@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  cherry: {fileID: 3350804773228955727, guid: 7661d2f81a658b94fb6351069bcefb1d, type: 3}
 --- !u!114 &5613125205679114899
 MonoBehaviour:
   m_ObjectHideFlags: 0
