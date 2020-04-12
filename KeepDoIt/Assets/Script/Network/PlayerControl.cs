@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerControl : MonoBehaviourPunCallbacks
 {
     public float moveSpeed=2f;
     private Rigidbody2D playerRb; 
     private Collider2D playerCollider;
-    private Vector2 playerDirection;
+    public static Vector2 playerDirection;
     private Joystick joystick;
     Vector2 movement; 
+
+    public static int ID;
 
     void Awake(){
         if (!photonView.IsMine){
@@ -21,6 +24,10 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         joystick=GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
     }
 
+    void Start(){
+        ID=photonView.ViewID;
+        Debug.Log(photonView.ViewID);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +70,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             Debug.Log(hit.collider.name);
         }
         playerCollider.enabled=true;
-        
     }
+
+    
 }
