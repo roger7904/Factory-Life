@@ -6,34 +6,38 @@ using Photon.Pun;
 public class CastbtnControl : MonoBehaviour
 {
     private PhotonView PV;
-    public GameObject cherry;
+    public GameObject cloth1;
+    private GameObject playerGO;
 
 
     void Start(){
         PV=GetComponent<PhotonView>();  
     }
+
+    void Update(){
+        playerGO = PhotonView.Find(PlayerControl.ID).gameObject;
+    }
     public void cast(){
         Debug.Log("call cast function");
         //playerCollider.enabled=false;
         
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, PlayerControl.playerDirection,1);
+        RaycastHit2D hit = Physics2D.Raycast(playerGO.transform.position, PlayerControl.playerDirection,1);
         if (hit.collider != null)
         {
             Debug.Log(hit.collider.name);
+            if(hit.collider.name=="cloth1"){
+                PV.RPC("cloth1RPC", RpcTarget.AllBuffered,PlayerControl.ID);
+            }
         }
         //playerCollider.enabled=true;
-        //if (PV.IsMine) {
-            //Debug.Log("ismine");
-            PV.RPC("testRPC", RpcTarget.AllBuffered,PlayerControl.ID);
-        //}
     }
 
     [PunRPC]
-    void testRPC(int parentViewId){
+    void cloth1RPC(int parentViewId){
         Debug.Log(parentViewId);
         GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
         Debug.Log(parentObject.name);
-        GameObject takeGO=Instantiate(cherry,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+0.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        GameObject takeGO=Instantiate(cloth1,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+0.5f,parentObject.transform.position.z),parentObject.transform.rotation);
 
         takeGO.transform.parent=parentObject.transform;
     }

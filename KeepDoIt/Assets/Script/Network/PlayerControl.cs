@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 {
     public float moveSpeed=2f;
     private Rigidbody2D playerRb; 
-    private Collider2D playerCollider;
+    //private Collider2D playerCollider;
     public static Vector2 playerDirection;
     private Joystick joystick;
     Vector2 movement; 
@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
             this.enabled=false;
         }
         playerRb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<Collider2D>();
+        //playerCollider = GetComponent<Collider2D>();
         joystick=GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
     }
 
@@ -62,14 +62,14 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     public void cast(){
         Debug.Log("call cast function");
-        playerCollider.enabled=false;
+        //playerCollider.enabled=false;
         //判斷角色面對方向
         RaycastHit2D hit = Physics2D.Raycast(transform.position, playerDirection,1);
         if (hit.collider != null)
         {
             Debug.Log(hit.collider.name);
         }
-        playerCollider.enabled=true;
+        //playerCollider.enabled=true;
     }
 
     
