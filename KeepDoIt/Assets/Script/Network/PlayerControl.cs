@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     private Rigidbody2D playerRb; 
     //private Collider2D playerCollider;
     public static Vector2 playerDirection;
+    public static string status;
     private Joystick joystick;
     Vector2 movement; 
 
@@ -25,6 +26,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     }
 
     void Start(){
+        status="none";
         ID=photonView.ViewID;
         Debug.Log(photonView.ViewID);
     }

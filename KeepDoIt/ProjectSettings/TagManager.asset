@@ -5,6 +5,30 @@ TagManager:
   serializedVersion: 2
   tags:
   - Joystick
+  - Conveyor
+  - Cloth1
+  - Cloth1_take
+  - Cloth2_take
+  - Cloth2
+  - Cloth3
+  - Cloth3_take
+  - Cloth4
+  - Cloth4_take
+  - Cloth1_blue
+  - Cloth1_green
+  - Cloth1_red
+  - Cloth2_blue
+  - Cloth2_green
+  - Cloth2_red
+  - Cloth3_blue
+  - Cloth3_green
+  - Cloth3_red
+  - Cloth4_blue
+  - Cloth4_green
+  - Cloth4_red
+  - blue
+  - red
+  - green
   layers:
   - Default
   - TransparentFX
@@ -44,6 +68,9 @@ TagManager:
     locked: 0
   - name: Conveyor
     uniqueID: 4064278185
+    locked: 0
+  - name: GameObject
+    uniqueID: 2167254693
     locked: 0
   - name: Default
     uniqueID: 0

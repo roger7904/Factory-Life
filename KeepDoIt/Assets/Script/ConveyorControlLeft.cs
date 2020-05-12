@@ -6,14 +6,14 @@ public class ConveyorControlLeft : MonoBehaviour
 {
     private Collider2D conveyorCollider;
 
-    private float moveSpeed=0.05f;
-    private float castdistance=0.8f;
+    private float moveSpeed=0.04f;
+    private float castdistance=1f;
     void Awake(){
         conveyorCollider = GetComponent<Collider2D>();
     }
     void Start()
     {
-        conveyorCollider.enabled=false;
+        //conveyorCollider.enabled=false;
 
     }
 
@@ -22,13 +22,19 @@ public class ConveyorControlLeft : MonoBehaviour
     {
         //conveyorCollider.enabled=false;
 
-        RaycastHit2D hit = Physics2D.Raycast(new Vector3(transform.position.x,transform.position.y+0.5f,transform.position.z), Vector2.left,castdistance);
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.collider.name);
-            GameObject conveyGO=hit.collider.gameObject;
-            conveyGO.transform.position=new Vector3(conveyGO.transform.position.x-moveSpeed,conveyGO.transform.position.y,conveyGO.transform.position.z);
+        RaycastHit2D[] hitarray = Physics2D.RaycastAll(new Vector3(transform.position.x,transform.position.y+0.7f,transform.position.z), Vector2.left,castdistance);
+        foreach(RaycastHit2D hit in hitarray){
+            if (hit.collider != null)
+            {
+                if(hit.collider.transform.tag!="Player" && hit.collider.transform.tag!="Conveyor"){
+                    //Debug.Log(hit.collider.name);
+                    GameObject conveyGO=hit.collider.gameObject;
+                    conveyGO.transform.position=new Vector3(conveyGO.transform.position.x-moveSpeed,conveyGO.transform.position.y,conveyGO.transform.position.z);
+                }
+                
+            }
         }
+        
 
         //conveyorCollider.enabled=true;
     }
