@@ -7,7 +7,7 @@ public class ConveyorControlLeft : MonoBehaviour
     private Collider2D conveyorCollider;
 
     private float moveSpeed=0.04f;
-    private float castdistance=1f;
+    private float castdistance=1.1f;
     void Awake(){
         conveyorCollider = GetComponent<Collider2D>();
     }
@@ -22,7 +22,7 @@ public class ConveyorControlLeft : MonoBehaviour
     {
         //conveyorCollider.enabled=false;
 
-        RaycastHit2D[] hitarray = Physics2D.RaycastAll(new Vector3(transform.position.x,transform.position.y+0.7f,transform.position.z), Vector2.left,castdistance);
+        RaycastHit2D[] hitarray = Physics2D.RaycastAll(new Vector3(transform.position.x,transform.position.y,transform.position.z), Vector2.left,castdistance);
         foreach(RaycastHit2D hit in hitarray){
             if (hit.collider != null)
             {

@@ -24,7 +24,7 @@ public class ConveyorControlDown : MonoBehaviour
 
         //RaycastHit2D hit = Physics2D.Raycast(new Vector3(transform.position.x-0.5f,transform.position.y,transform.position.z), Vector2.down,castdistance);
 
-        RaycastHit2D[] hitarray = Physics2D.RaycastAll(new Vector3(transform.position.x-0.5f,transform.position.y,transform.position.z), Vector2.down,castdistance);
+        RaycastHit2D[] hitarray = Physics2D.RaycastAll(new Vector3(transform.position.x,transform.position.y,transform.position.z), Vector2.down,castdistance);
         foreach(RaycastHit2D hit in hitarray){
             if (hit.collider != null)
             {

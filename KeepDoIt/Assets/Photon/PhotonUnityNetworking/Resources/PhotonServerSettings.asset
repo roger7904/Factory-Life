@@ -49,6 +49,30 @@ MonoBehaviour:
   - blueRPC
   - greenRPC
   - redRPC
+  - cloth1_blueRPC
+  - cloth1_greenRPC
+  - cloth1_redRPC
+  - cloth2_blueRPC
+  - cloth2_greenRPC
+  - cloth2_redRPC
+  - cloth3_blueRPC
+  - cloth3_greenRPC
+  - cloth3_redRPC
+  - cloth4_blueRPC
+  - cloth4_greenRPC
+  - cloth4_redRPC
+  - blueyeing1RPC
+  - blueyeing2RPC
+  - blueyeing3RPC
+  - blueyeing4RPC
+  - greenyeing1RPC
+  - greenyeing2RPC
+  - greenyeing3RPC
+  - greenyeing4RPC
+  - redyeing1RPC
+  - redyeing2RPC
+  - redyeing3RPC
+  - redyeing4RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
