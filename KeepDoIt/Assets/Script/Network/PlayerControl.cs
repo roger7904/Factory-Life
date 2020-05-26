@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviourPunCallbacks
     public static Vector2 playerDirection;
     private Joystick joystick;
     Vector2 movement; 
+    public Animator animator;
 
     public static int ID;
 
@@ -26,7 +27,6 @@ public class PlayerControl : MonoBehaviourPunCallbacks
 
     void Start(){
         ID=photonView.ViewID;
-        Debug.Log(photonView.ViewID);
     }
     // Update is called once per frame
     void Update()
@@ -35,19 +35,41 @@ public class PlayerControl : MonoBehaviourPunCallbacks
         movement.x=joystick.Horizontal;
         movement.y=joystick.Vertical;
         if(movement.x==0 && movement.y==0){
+            animator.SetFloat("Horizontal",movement.x);
+            animator.SetFloat("Vertical",movement.y);
+            animator.SetFloat("Speed",0);
             return;
         }
+        animator.SetFloat("Horizontal",movement.x);
+        animator.SetFloat("Vertical",movement.y);
+        animator.SetFloat("Speed",movement.sqrMagnitude);
         if(Mathf.Abs(movement.x)>Mathf.Abs(movement.y)){
             if(movement.x<0){
                 playerDirection=Vector2.left;
+                animator.SetBool("left",true);
+                animator.SetBool("right",false);
+                animator.SetBool("up",false);
+                animator.SetBool("down",false);
             }else{
                 playerDirection=Vector2.right;
+                animator.SetBool("left",false);
+                animator.SetBool("right",true);
+                animator.SetBool("up",false);
+                animator.SetBool("down",false);
             }
         }else{
             if(movement.y<0){
                 playerDirection=Vector2.down;
+                animator.SetBool("left",false);
+                animator.SetBool("right",false);
+                animator.SetBool("up",false);
+                animator.SetBool("down",true);
             }else{
                 playerDirection=Vector2.up;
+                animator.SetBool("left",false);
+                animator.SetBool("right",false);
+                animator.SetBool("up",true);
+                animator.SetBool("down",false);
             }
         }
     }

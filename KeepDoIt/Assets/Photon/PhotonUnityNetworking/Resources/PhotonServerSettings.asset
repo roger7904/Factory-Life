@@ -73,6 +73,55 @@ MonoBehaviour:
   - redyeing2RPC
   - redyeing3RPC
   - redyeing4RPC
+  - clothmix_takeRPC
+  - clothmixRPC
+  - carton_takeRPC
+  - cartonRPC
+  - trashcanRPC
+  - da_ban_takeRPC
+  - da_banRPC
+  - pai_ban_takeRPC
+  - pai_banRPC
+  - workRPC
+  - cloth1_pai_ban_takeRPC
+  - cloth1_pai_banRPC
+  - cloth1_tailor_takeRPC
+  - cloth1_tailorRPC
+  - cloth1_done_takeRPC
+  - cloth1_doneRPC
+  - renameRPC
+  - clothmix_pai_ban_takeRPC
+  - clothmix_pai_banRPC
+  - clothmix_tailor_takeRPC
+  - clothmix_done_takeRPC
+  - clothmix_doneRPC
+  - clothmix_tailorRPC
+  - cloth2_pai_banRPC
+  - cloth2_done_takeRPC
+  - cloth2_doneRPC
+  - cloth2_pai_ban_takeRPC
+  - cloth2_tailor_takeRPC
+  - cloth2_tailorRPC
+  - cloth4_purple_takeRPC
+  - cloth4_purpleRPC
+  - cloth2_yello_takeRPC
+  - cloth2_yelloRPC
+  - cloth3_yello_takeRPC
+  - cloth3_yelloRPC
+  - cloth3_done_takeRPC
+  - cloth3_doneRPC
+  - cloth3_pai_ban_takeRPC
+  - cloth3_pai_banRPC
+  - cloth3_tailor_takeRPC
+  - cloth3_tailorRPC
+  - cloth4_done_takeRPC
+  - cloth4_doneRPC
+  - cloth4_pai_ban_takeRPC
+  - cloth4_pai_banRPC
+  - cloth4_tailor_takeRPC
+  - cloth4_tailorRPC
+  - pai_ban_redRPC
+  - red_pai_ban_takeRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

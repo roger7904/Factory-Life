@@ -29,6 +29,38 @@ TagManager:
   - blue
   - red
   - green
+  - Da_ban
+  - Pai_ban
+  - Clothmix
+  - Carton
+  - Carton_take
+  - Trashcan
+  - Da_ban_take
+  - Pai_ban_take
+  - Work
+  - Pai_ban_blue
+  - Pai_ban_green
+  - Pai_ban_red
+  - Da_ban_blue
+  - Da_ban_green
+  - Da_ban_red
+  - Tailor
+  - Cloth1_tailor
+  - Cloth1_done
+  - Car
+  - Clothmix_tailor
+  - Clothmix_done
+  - Cloth2_tailor
+  - Cloth2_done
+  - Cloth4_purple
+  - Cloth3_yello
+  - Cloth4_done
+  - Cloth4_tailor
+  - Cloth3_done
+  - Cloth3_tailor
+  - Pai_ban_yello
+  - Pai_ban_purple
+  - Pai_ban_mix
   layers:
   - Default
   - TransparentFX

@@ -7,7 +7,7 @@ public class ConveyorControlDown : MonoBehaviour
     private Collider2D conveyorCollider;
 
     private float moveSpeed=0.04f;
-    private float castdistance=1.05f;
+    private float castdistance=1.2f;
     void Awake(){
         conveyorCollider = GetComponent<Collider2D>();
     }
