@@ -16,11 +16,9 @@ public class RegisterManager : MonoBehaviour
 
     void Start()
     {
-        string defaultName = string.Empty;
-        if (PlayerPrefs.HasKey("playerName")){
-            defaultName =  PlayerPrefs.GetString("playerName");
-            nameInput.text = defaultName;
-        }
+        // if (PlayerPrefs.HasKey("playerName") && PlayerPrefs.HasKey("character")){
+        //     SceneManager.LoadScene("TestHomepage");
+        // }
     }
 
     public void Register(){

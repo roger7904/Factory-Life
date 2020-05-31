@@ -122,6 +122,47 @@ MonoBehaviour:
   - cloth4_tailorRPC
   - pai_ban_redRPC
   - red_pai_ban_takeRPC
+  - timeRPC
+  - cloth1_boxingRPC
+  - cloth2_boxingRPC
+  - cloth3_boxingRPC
+  - cloth4_boxingRPC
+  - clothmix_boxingRPC
+  - cloth1_boxing_takeRPC
+  - cloth2_boxing_takeRPC
+  - cloth3_boxing_takeRPC
+  - cloth4_boxing_takeRPC
+  - clothmix_boxing_takeRPC
+  - cloth1_blue_pointRPC
+  - cloth1_green_pointRPC
+  - cloth1_red_pointRPC
+  - cloth2_blue_pointRPC
+  - cloth2_green_pointRPC
+  - cloth2_red_pointRPC
+  - cloth3_blue_pointRPC
+  - cloth3_green_pointRPC
+  - cloth3_red_pointRPC
+  - cloth3_yello_pointRPC
+  - cloth4_blue_pointRPC
+  - cloth4_green_pointRPC
+  - cloth4_purple_pointRPC
+  - cloth4_red_pointRPC
+  - cloth1_boxing_pointRPC
+  - cloth1_pai_ban_pointRPC
+  - cloth1_pointRPC
+  - cloth2_boxing_pointRPC
+  - cloth2_pai_ban_pointRPC
+  - cloth2_pointRPC
+  - cloth3_boxing_pointRPC
+  - cloth3_pai_ban_pointRPC
+  - cloth3_pointRPC
+  - cloth4_boxing_pointRPC
+  - cloth4_pai_ban_pointRPC
+  - cloth4_pointRPC
+  - clothmix_boxing_pointRPC
+  - clothmix_pai_ban_pointRPC
+  - clothmix_pointRPC
+  - pai_ban_red_pointRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

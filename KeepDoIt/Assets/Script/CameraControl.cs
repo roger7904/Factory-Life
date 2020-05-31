@@ -17,7 +17,7 @@ public class CameraControl : MonoBehaviour
         playerTransform=GameObject.FindGameObjectWithTag("Player");
         Vector3 temp =transform.position;
         temp.x=playerTransform.transform.position.x;
-        temp.y=playerTransform.transform.position.y;
+        temp.y=playerTransform.transform.position.y+1.5f;
         transform.position=temp;
     }
 }

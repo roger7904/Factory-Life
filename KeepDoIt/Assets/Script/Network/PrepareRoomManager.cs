@@ -15,6 +15,7 @@ public class PrepareRoomManager : MonoBehaviourPunCallbacks{
         joinOrder=PhotonNetwork.CurrentRoom.PlayerCount;
         GameObject playerGO=PhotonNetwork.Instantiate(playerPrefName,spawnPoint[PrepareRoomManager.joinOrder-1].position,spawnPoint[PrepareRoomManager.joinOrder-1].rotation,0);
         //playerGO.transform.localScale=new Vector3(10,10,10);
+        startButton.SetActive(true);
     }
     // 玩家離開遊戲室時, 把他帶回到Lobby
     public override void OnLeftRoom(){
@@ -31,7 +32,7 @@ public class PrepareRoomManager : MonoBehaviourPunCallbacks{
     public override void OnPlayerEnteredRoom(Player other){
         Debug.Log(other.NickName+"進入遊戲室");
         Debug.Log("玩家數為"+PhotonNetwork.CurrentRoom.PlayerCount);
-        if(PhotonNetwork.IsMasterClient){
+        if(PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount==4){
             startButton.SetActive(true);
         }
         // if (PhotonNetwork.IsMasterClient)

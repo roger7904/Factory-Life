@@ -1,10 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
+
 
 public class CastbtnControl : MonoBehaviour
 {
+    public GameObject cameraGO;
+    public Text teamApointText;
+    public Text teamBpointText;
+    public static int teamApoint;
+    public static int teamBpoint;
+    public GameObject make;
+    public GameObject joy;
+    public GameObject cas;
+
     private RaycastHit2D[] hitarray;
     private string status;
     private PhotonView PV;
@@ -86,6 +97,46 @@ public class CastbtnControl : MonoBehaviour
     public GameObject cloth4_tailor_c;
     public GameObject cloth4_done;
     public GameObject cloth4_done_c;
+    public GameObject cloth1_boxing;
+    public GameObject cloth1_boxing_c;
+    public GameObject cloth2_boxing;
+    public GameObject cloth2_boxing_c;
+    public GameObject cloth3_boxing;
+    public GameObject cloth3_boxing_c;
+    public GameObject cloth4_boxing;
+    public GameObject cloth4_boxing_c;
+    public GameObject clothmix_boxing;
+    public GameObject clothmix_boxing_c;
+    public GameObject cloth1_blue_point;
+    public GameObject cloth1_green_point;
+    public GameObject cloth1_red_point;
+    public GameObject cloth2_blue_point;
+    public GameObject cloth2_green_point;
+    public GameObject cloth2_red_point;
+    public GameObject cloth3_blue_point;
+    public GameObject cloth3_green_point;
+    public GameObject cloth3_red_point;
+    public GameObject cloth3_yello_point;
+    public GameObject cloth4_blue_point;
+    public GameObject cloth4_green_point;
+    public GameObject cloth4_red_point;
+    public GameObject cloth4_purple_point;
+    public GameObject pai_ban_blue_point;
+    public GameObject pai_ban_green_point;
+    public GameObject pai_ban_red_point;
+    public GameObject pai_ban_yello_point;
+    public GameObject pai_ban_purple_point;
+    public GameObject pai_ban_mix_point;
+    public GameObject cloth1_point;
+    public GameObject cloth2_point;
+    public GameObject cloth3_point;
+    public GameObject cloth4_point;
+    public GameObject clothmix_point;
+    public GameObject cloth1_boxing_point;
+    public GameObject cloth2_boxing_point;
+    public GameObject cloth3_boxing_point;
+    public GameObject cloth4_boxing_point;
+    public GameObject clothmix_boxing_point;
 
 
     private GameObject playerGO;
@@ -105,19 +156,26 @@ public class CastbtnControl : MonoBehaviour
         flag3=false;
         flag4=false;
         GOnumber=1;
+        teamApoint=0;
+        teamBpoint=0;
     }
     void Update(){
         playerGO = PhotonView.Find(PlayerControl.ID).gameObject;
+        teamApointText.text=""+teamApoint.ToString();
+        teamBpointText.text=""+teamBpoint.ToString();
+        if(make.activeSelf){
+            joy.SetActive(false);
+            cas.SetActive(false);
+        }else{
+            joy.SetActive(true);
+            cas.SetActive(true);
+        }
     }
     public void cast(){
         playerGOCollider = playerGO.GetComponent<Collider2D>();
         playerGOCollider.enabled=false;
         Debug.Log("call cast function status:"+status);
-        if(PlayerControl.playerDirection==Vector2.down){
-            hitarray=Physics2D.RaycastAll(playerGO.transform.position, PlayerControl.playerDirection,1.5f);
-        }else{
-            hitarray=Physics2D.RaycastAll(playerGO.transform.position, PlayerControl.playerDirection,1f);
-        }
+        hitarray=Physics2D.RaycastAll(playerGO.transform.position, PlayerControl.playerDirection,1.5f);
         foreach (RaycastHit2D hit in hitarray){
             if(hit.collider.transform.tag=="Work" && status!="none"){
                 flag1=true;
@@ -133,23 +191,49 @@ public class CastbtnControl : MonoBehaviour
             foreach (RaycastHit2D hit in hitarray)
             {
                 if((hit.collider.transform.tag=="Pai_ban" && status=="cloth1_blue") || (hit.collider.transform.tag=="Cloth1_blue" && status=="pai_ban")){
+                    m();
                     status="cloth1_pai_ban";
                     PV.RPC("cloth1_pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }else if((hit.collider.transform.tag=="Pai_ban" && status=="clothmix") || (hit.collider.transform.tag=="Clothmix" && status=="pai_ban")){
+                    m();
                     status="clothmix_pai_ban";
                     PV.RPC("clothmix_pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }else if((hit.collider.transform.tag=="Pai_ban" && status=="cloth2_green") || (hit.collider.transform.tag=="Cloth2_green" && status=="pai_ban")){
+                    m();
                     status="cloth2_pai_ban";
                     PV.RPC("cloth2_pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }else if((hit.collider.transform.tag=="Pai_ban" && status=="cloth3_yello") || (hit.collider.transform.tag=="Cloth3_yello" && status=="pai_ban")){
+                    m();
                     status="cloth3_pai_ban";
                     PV.RPC("cloth3_pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }else if((hit.collider.transform.tag=="Pai_ban" && status=="cloth4_purple") || (hit.collider.transform.tag=="Cloth4_purple" && status=="pai_ban")){
+                    m();
                     status="cloth4_pai_ban";
                     PV.RPC("cloth4_pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }else if((hit.collider.transform.tag=="Pai_ban" && status=="cloth1_red") || (hit.collider.transform.tag=="Cloth1_red" && status=="pai_ban") || (hit.collider.transform.tag=="Pai_ban" && status=="cloth2_red") || (hit.collider.transform.tag=="Cloth2_red" && status=="pai_ban") || (hit.collider.transform.tag=="Pai_ban" && status=="cloth3_red") || (hit.collider.transform.tag=="Cloth3_red" && status=="pai_ban") || (hit.collider.transform.tag=="Pai_ban" && status=="cloth4_red") || (hit.collider.transform.tag=="Cloth4_red" && status=="pai_ban")){
+                    m();
                     status="pai_ban_red";
                     PV.RPC("pai_ban_redRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
+                }else if((hit.collider.transform.tag=="Carton" && status=="cloth1_done") || (hit.collider.transform.tag=="Cloth1_done" && status=="carton")){
+                    m();
+                    status="cloth1_boxing";
+                    PV.RPC("cloth1_boxingRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
+                }else if((hit.collider.transform.tag=="Carton" && status=="cloth2_done") || (hit.collider.transform.tag=="Cloth2_done" && status=="carton")){
+                    m();
+                    status="cloth2_boxing";
+                    PV.RPC("cloth2_boxingRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
+                }else if((hit.collider.transform.tag=="Carton" && status=="cloth3_done") || (hit.collider.transform.tag=="Cloth3_done" && status=="carton")){
+                    m();
+                    status="cloth3_boxing";
+                    PV.RPC("cloth3_boxingRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
+                }else if((hit.collider.transform.tag=="Carton" && status=="cloth4_done") || (hit.collider.transform.tag=="Cloth4_done" && status=="carton")){
+                    m();
+                    status="cloth4_boxing";
+                    PV.RPC("cloth4_boxingRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
+                }else if((hit.collider.transform.tag=="Carton" && status=="clothmix_done") || (hit.collider.transform.tag=="Clothmix_done" && status=="carton")){
+                    m();
+                    status="clothmix_boxing";
+                    PV.RPC("clothmix_boxingRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                 }
             }
         }else if(flag3 && flag4){
@@ -161,6 +245,7 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth1";
                         PV.RPC("cloth1_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1" && status=="none"){
+                        m();
                         status="cloth1";
                         PV.RPC("cloth1RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_take" && status=="none"){
@@ -168,18 +253,21 @@ public class CastbtnControl : MonoBehaviour
                         PV.RPC("cloth2_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2" && status=="none"){
                         status="cloth2";
+                        m();
                         PV.RPC("cloth2RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_take" && status=="none"){
                         status="cloth3";
                         PV.RPC("cloth3_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3" && status=="none"){
                         status="cloth3";
+                        m();
                         PV.RPC("cloth3RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_take" && status=="none"){
                         status="cloth4";
                         PV.RPC("cloth4_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4" && status=="none"){
                         status="cloth4";
+                        m();
                         PV.RPC("cloth4RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Conveyor" && status!="none"){
                         status="none";
@@ -220,54 +308,71 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth4_red";
                         PV.RPC("cloth4_redRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth1"){
+                        m();
                         status="cloth1_blue";
                         PV.RPC("blueyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth2"){
+                        m();
                         status="cloth2_blue";
                         PV.RPC("blueyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth3"){
+                        m();
                         status="cloth3_blue";
                         PV.RPC("blueyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth4"){
+                        m();
                         status="cloth4_blue";
                         PV.RPC("blueyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth1"){
+                        m();
                         status="cloth1_green";
                         PV.RPC("greenyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth2"){
+                        m();
                         status="cloth2_green";
                         PV.RPC("greenyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth3"){
+                        m();
                         status="cloth3_green";
                         PV.RPC("greenyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth4"){
+                        m();
                         status="cloth4_green";
                         PV.RPC("greenyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth1"){
+                        m();
                         status="cloth1_red";
                         PV.RPC("redyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth2"){
+                        m();
                         status="cloth2_red";
                         PV.RPC("redyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth3"){
+                        m();
                         status="cloth3_red";
                         PV.RPC("redyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth4"){
+                        m();
                         status="cloth4_red";
                         PV.RPC("redyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_take" && (status=="cloth2" ||status=="cloth3" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_take" && (status=="cloth1" ||status=="cloth3" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_take" && (status=="cloth2" ||status=="cloth1" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_take" && (status=="cloth2" ||status=="cloth3" || status=="cloth1")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix" && status=="none"){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmix_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Carton_take" && status=="none"){
@@ -289,18 +394,22 @@ public class CastbtnControl : MonoBehaviour
                         status="pai_ban";
                         PV.RPC("pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Pai_ban_take" && status=="da_ban"){
+                        m();
                         status="pai_ban";
                         PV.RPC("pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Pai_ban_blue" && status=="none"){
                         status="cloth1_pai_ban";
                         PV.RPC("cloth1_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth1_pai_ban"){
+                        m();
                         status="cloth1_tailor";
                         PV.RPC("cloth1_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_tailor" && status=="none"){
+                        m();
                         status="cloth1_tailor";
                         PV.RPC("cloth1_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth1_tailor"){
+                        m();
                         status="cloth1_done";
                         PV.RPC("cloth1_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_done" && status=="none"){
@@ -310,12 +419,14 @@ public class CastbtnControl : MonoBehaviour
                         status="clothmix_pai_ban";
                         PV.RPC("clothmix_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="clothmix_pai_ban"){
+                        m();
                         status="clothmix_tailor";
                         PV.RPC("clothmix_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix_tailor" && status=="none"){
                         status="clothmix_tailor";
                         PV.RPC("clothmix_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="clothmix_tailor"){
+                        m();
                         status="clothmix_done";
                         PV.RPC("clothmix_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix_done" && status=="none"){
@@ -325,24 +436,28 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth2_pai_ban";
                         PV.RPC("cloth2_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth2_pai_ban"){
+                        m();
                         status="cloth2_tailor";
                         PV.RPC("cloth2_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_tailor" && status=="none"){
                         status="cloth2_tailor";
                         PV.RPC("cloth2_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth2_tailor"){
+                        m();
                         status="cloth2_done";
                         PV.RPC("cloth2_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_done" && status=="none"){
                         status="cloth2_done";
                         PV.RPC("cloth2_done_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if((hit.collider.transform.tag=="blue" && status=="cloth4_red") || (hit.collider.transform.tag=="red" && status=="cloth4_blue")){
+                    m();
                     status="cloth4_purple";
                     PV.RPC("cloth4_purple_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_purple" && status=="none"){
                         status="cloth4_purple";
                         PV.RPC("cloth4_purpleRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if((hit.collider.transform.tag=="green" && status=="cloth3_red") || (hit.collider.transform.tag=="red" && status=="cloth3_green")){
+                    m();
                     status="cloth3_yello";
                     PV.RPC("cloth3_yello_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_yello" && status=="none"){
@@ -352,12 +467,14 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth3_pai_ban";
                         PV.RPC("cloth3_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth3_pai_ban"){
+                        m();
                         status="cloth3_tailor";
                         PV.RPC("cloth3_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_tailor" && status=="none"){
                         status="cloth3_tailor";
                         PV.RPC("cloth3_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth3_tailor"){
+                        m();
                         status="cloth3_done";
                         PV.RPC("cloth3_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_done" && status=="none"){
@@ -367,12 +484,14 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth4_pai_ban";
                         PV.RPC("cloth4_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth4_pai_ban"){
+                        m();
                         status="cloth4_tailor";
                         PV.RPC("cloth4_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_tailor" && status=="none"){
                         status="cloth4_tailor";
                         PV.RPC("cloth4_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth4_tailor"){
+                        m();
                         status="cloth4_done";
                         PV.RPC("cloth4_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_done" && status=="none"){
@@ -381,7 +500,247 @@ public class CastbtnControl : MonoBehaviour
                     }else if(hit.collider.transform.tag=="Pai_ban_red" && status=="none"){
                         status="pai_ban_red";
                         PV.RPC("red_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
-                    }    
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_yello"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_yello_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_purple"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_purple_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth1_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth2_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth3_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth4_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("clothmix_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="pai_ban_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("pai_ban_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth1_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth2_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth3_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth4_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("clothmix_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth1_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth2_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth3_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth4_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("clothmix_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }   
                 }
             }
         }else{
@@ -393,6 +752,7 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth1";
                         PV.RPC("cloth1_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1" && status=="none"){
+                        m();
                         status="cloth1";
                         PV.RPC("cloth1RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_take" && status=="none"){
@@ -400,18 +760,21 @@ public class CastbtnControl : MonoBehaviour
                         PV.RPC("cloth2_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2" && status=="none"){
                         status="cloth2";
+                        m();
                         PV.RPC("cloth2RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_take" && status=="none"){
                         status="cloth3";
                         PV.RPC("cloth3_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3" && status=="none"){
                         status="cloth3";
+                        m();
                         PV.RPC("cloth3RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_take" && status=="none"){
                         status="cloth4";
                         PV.RPC("cloth4_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4" && status=="none"){
                         status="cloth4";
+                        m();
                         PV.RPC("cloth4RPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Conveyor" && status!="none"){
                         status="none";
@@ -452,54 +815,71 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth4_red";
                         PV.RPC("cloth4_redRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth1"){
+                        m();
                         status="cloth1_blue";
                         PV.RPC("blueyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth2"){
+                        m();
                         status="cloth2_blue";
                         PV.RPC("blueyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth3"){
+                        m();
                         status="cloth3_blue";
                         PV.RPC("blueyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="blue" && status=="cloth4"){
+                        m();
                         status="cloth4_blue";
                         PV.RPC("blueyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth1"){
+                        m();
                         status="cloth1_green";
                         PV.RPC("greenyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth2"){
+                        m();
                         status="cloth2_green";
                         PV.RPC("greenyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth3"){
+                        m();
                         status="cloth3_green";
                         PV.RPC("greenyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="green" && status=="cloth4"){
+                        m();
                         status="cloth4_green";
                         PV.RPC("greenyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth1"){
+                        m();
                         status="cloth1_red";
                         PV.RPC("redyeing1RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth2"){
+                        m();
                         status="cloth2_red";
                         PV.RPC("redyeing2RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth3"){
+                        m();
                         status="cloth3_red";
                         PV.RPC("redyeing3RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="red" && status=="cloth4"){
+                        m();
                         status="cloth4_red";
                         PV.RPC("redyeing4RPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_take" && (status=="cloth2" ||status=="cloth3" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_take" && (status=="cloth1" ||status=="cloth3" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_take" && (status=="cloth2" ||status=="cloth1" || status=="cloth4")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_take" && (status=="cloth2" ||status=="cloth3" || status=="cloth1")){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix" && status=="none"){
+                        m();
                         status="clothmix";
                         PV.RPC("clothmix_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Carton_take" && status=="none"){
@@ -521,18 +901,22 @@ public class CastbtnControl : MonoBehaviour
                         status="pai_ban";
                         PV.RPC("pai_banRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Pai_ban_take" && status=="da_ban"){
+                        m();
                         status="pai_ban";
                         PV.RPC("pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Pai_ban_blue" && status=="none"){
                         status="cloth1_pai_ban";
                         PV.RPC("cloth1_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth1_pai_ban"){
+                        m();
                         status="cloth1_tailor";
                         PV.RPC("cloth1_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_tailor" && status=="none"){
+                        m();
                         status="cloth1_tailor";
                         PV.RPC("cloth1_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth1_tailor"){
+                        m();
                         status="cloth1_done";
                         PV.RPC("cloth1_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth1_done" && status=="none"){
@@ -542,12 +926,14 @@ public class CastbtnControl : MonoBehaviour
                         status="clothmix_pai_ban";
                         PV.RPC("clothmix_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="clothmix_pai_ban"){
+                        m();
                         status="clothmix_tailor";
                         PV.RPC("clothmix_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix_tailor" && status=="none"){
                         status="clothmix_tailor";
                         PV.RPC("clothmix_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="clothmix_tailor"){
+                        m();
                         status="clothmix_done";
                         PV.RPC("clothmix_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix_done" && status=="none"){
@@ -557,24 +943,28 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth2_pai_ban";
                         PV.RPC("cloth2_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth2_pai_ban"){
+                        m();
                         status="cloth2_tailor";
                         PV.RPC("cloth2_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_tailor" && status=="none"){
                         status="cloth2_tailor";
                         PV.RPC("cloth2_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth2_tailor"){
+                        m();
                         status="cloth2_done";
                         PV.RPC("cloth2_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth2_done" && status=="none"){
                         status="cloth2_done";
                         PV.RPC("cloth2_done_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if((hit.collider.transform.tag=="blue" && status=="cloth4_red") || (hit.collider.transform.tag=="red" && status=="cloth4_blue")){
+                    m();
                     status="cloth4_purple";
                     PV.RPC("cloth4_purple_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_purple" && status=="none"){
                         status="cloth4_purple";
                         PV.RPC("cloth4_purpleRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if((hit.collider.transform.tag=="green" && status=="cloth3_red") || (hit.collider.transform.tag=="red" && status=="cloth3_green")){
+                    m();
                     status="cloth3_yello";
                     PV.RPC("cloth3_yello_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_yello" && status=="none"){
@@ -584,12 +974,14 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth3_pai_ban";
                         PV.RPC("cloth3_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth3_pai_ban"){
+                        m();
                         status="cloth3_tailor";
                         PV.RPC("cloth3_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_tailor" && status=="none"){
                         status="cloth3_tailor";
                         PV.RPC("cloth3_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth3_tailor"){
+                        m();
                         status="cloth3_done";
                         PV.RPC("cloth3_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth3_done" && status=="none"){
@@ -599,12 +991,14 @@ public class CastbtnControl : MonoBehaviour
                         status="cloth4_pai_ban";
                         PV.RPC("cloth4_pai_ban_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Tailor" && status=="cloth4_pai_ban"){
+                        m();
                         status="cloth4_tailor";
                         PV.RPC("cloth4_tailor_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_tailor" && status=="none"){
                         status="cloth4_tailor";
                         PV.RPC("cloth4_tailorRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Car" && status=="cloth4_tailor"){
+                        m();
                         status="cloth4_done";
                         PV.RPC("cloth4_doneRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Cloth4_done" && status=="none"){
@@ -616,7 +1010,247 @@ public class CastbtnControl : MonoBehaviour
                     }else if(hit.collider.transform.tag=="Work" && status!="none"){
                         status="none";
                         PV.RPC("workRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.transform.position,hit.collider.transform.rotation,GOnumber);
-                    }    
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth1_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth2_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_yello"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth3_yello_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_blue"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_blue_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_green"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_green_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_purple"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=1;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=1;
+                        }
+                        PV.RPC("cloth4_purple_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth1_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth2_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth3_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("cloth4_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_pai_ban"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("clothmix_pai_ban_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="pai_ban_red"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=5;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=5;
+                        }
+                        PV.RPC("pai_ban_red_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth1_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth2_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth3_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("cloth4_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_done"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=12;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=12;
+                        }
+                        PV.RPC("clothmix_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth1_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth1_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth2_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth2_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth3_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth3_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="cloth4_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("cloth4_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }else if(hit.collider.transform.tag=="Give" && status=="clothmix_boxing"){
+                        status="none";
+                        if(PrepareRoomManager.joinOrder==1){
+                            teamApoint+=14;
+                        }else if(PrepareRoomManager.joinOrder==3){
+                            teamBpoint+=14;
+                        }
+                        PV.RPC("clothmix_boxing_pointRPC", RpcTarget.AllBuffered,PlayerControl.ID,teamApoint,teamBpoint);
+                    }       
                 }
             }
         }
@@ -625,6 +1259,11 @@ public class CastbtnControl : MonoBehaviour
         flag3=false;
         flag4=false;
         playerGOCollider.enabled=true;
+    }
+    void m(){
+        make.transform.position=new Vector3(cameraGO.transform.position.x,cameraGO.transform.position.y+0.9f,0);
+        make.SetActive(true);
+        StartCoroutine (delay());
     }
     [PunRPC]
     void cloth4_purple_takeRPC(int parentViewId,int GOnumber){
@@ -667,6 +1306,11 @@ public class CastbtnControl : MonoBehaviour
         takeGO.transform.parent=parentObject.transform;
         takeGO.name=GOnumber.ToString();
         this.GOnumber+=1;
+    }
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds (4.5f);
+        make.SetActive(false);
     }
     [PunRPC]
     void cloth4_done_takeRPC(int parentViewId,string GOname,int GOnumber){
@@ -888,6 +1532,51 @@ public class CastbtnControl : MonoBehaviour
         this.GOnumber+=1;
     }
     [PunRPC]
+    void cloth1_boxing_takeRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        GameObject takeGO=Instantiate(cloth1_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth2_boxing_takeRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        GameObject takeGO=Instantiate(cloth2_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth3_boxing_takeRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        GameObject takeGO=Instantiate(cloth3_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth4_boxing_takeRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        GameObject takeGO=Instantiate(cloth4_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void clothmix_boxing_takeRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        GameObject takeGO=Instantiate(clothmix_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
     void clothmix_pai_ban_takeRPC(int parentViewId,string GOname,int GOnumber){
         Destroy(GameObject.Find(GOname).gameObject);
         GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
@@ -979,6 +1668,66 @@ public class CastbtnControl : MonoBehaviour
             Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
         }
         GameObject takeGO=Instantiate(pai_ban_purple,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth1_boxingRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        GameObject takeGO=Instantiate(cloth1_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth2_boxingRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        GameObject takeGO=Instantiate(cloth2_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth3_boxingRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        GameObject takeGO=Instantiate(cloth3_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void cloth4_boxingRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        GameObject takeGO=Instantiate(cloth4_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        takeGO.transform.parent=parentObject.transform;
+        takeGO.name=GOnumber.ToString();
+        this.GOnumber+=1;
+    }
+    [PunRPC]
+    void clothmix_boxingRPC(int parentViewId,string GOname,int GOnumber){
+        Destroy(GameObject.Find(GOname).gameObject);
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        GameObject takeGO=Instantiate(clothmix_boxing,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+1.5f,parentObject.transform.position.z),parentObject.transform.rotation);
         takeGO.transform.parent=parentObject.transform;
         takeGO.name=GOnumber.ToString();
         this.GOnumber+=1;
@@ -1398,6 +2147,336 @@ public class CastbtnControl : MonoBehaviour
         }
     }
     [PunRPC]
+    void cloth1_blue_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth1_blue_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth1_green_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth1_green_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth1_red_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth1_red_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_blue_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth2_blue_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_green_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth2_green_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_red_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth2_red_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_blue_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_blue_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_green_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_green_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_red_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_red_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_yello_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_yello_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_blue_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_blue_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_green_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_green_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_purple_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_purple_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_red_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_red_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth1_pai_ban_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_blue_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_pai_ban_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_green_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_pai_ban_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_yello_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_pai_ban_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_purple_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void clothmix_pai_ban_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_mix_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void pai_ban_red_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(pai_ban_red_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth1_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth1_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth2_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void clothmix_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(clothmix_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth1_boxing_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth1_boxing_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth2_boxing_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth2_boxing_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth3_boxing_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth3_boxing_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void cloth4_boxing_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(cloth4_boxing_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
+    void clothmix_boxing_pointRPC(int parentViewId,int a, int b){
+        GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
+        if(parentObject.GetComponent<Transform>().childCount>1){
+            Destroy(parentObject.GetComponent<Transform>().GetChild(1).gameObject);
+        }
+        teamApoint=a;
+        teamBpoint=b;
+        GameObject takeGO=Instantiate(clothmix_boxing_point,new Vector3(parentObject.transform.position.x,parentObject.transform.position.y+2.5f,parentObject.transform.position.z),parentObject.transform.rotation);
+        Destroy(takeGO,1f);
+    }
+    [PunRPC]
     void conveyorRPC(int parentViewId,Vector3 conveyorPosition,Quaternion conveyorRotation,int GOnumber){
         GameObject parentObject = PhotonView.Find(parentViewId).gameObject;
         if(parentObject.GetComponent<Transform>().childCount>1){
@@ -1471,6 +2550,16 @@ public class CastbtnControl : MonoBehaviour
                 insGO=pai_ban_purple_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_red"){
                 insGO=pai_ban_red_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth1_boxing"){
+                insGO=cloth1_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth2_boxing"){
+                insGO=cloth2_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth3_boxing"){
+                insGO=cloth3_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth4_boxing"){
+                insGO=cloth4_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Clothmix_boxing"){
+                insGO=clothmix_boxing_c;
             }
         }
         if(parentObject.GetComponent<Transform>().childCount>1){
@@ -1554,6 +2643,16 @@ public class CastbtnControl : MonoBehaviour
                 insGO=pai_ban_purple_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_red"){
                 insGO=pai_ban_red_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth1_boxing"){
+                insGO=cloth1_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth2_boxing"){
+                insGO=cloth2_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth3_boxing"){
+                insGO=cloth3_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Cloth4_boxing"){
+                insGO=cloth4_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Clothmix_boxing"){
+                insGO=clothmix_boxing_c;
             }
         }
         if(parentObject.GetComponent<Transform>().childCount>1){

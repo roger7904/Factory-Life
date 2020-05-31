@@ -61,6 +61,12 @@ TagManager:
   - Pai_ban_yello
   - Pai_ban_purple
   - Pai_ban_mix
+  - Cloth1_boxing
+  - Cloth2_boxing
+  - Cloth3_boxing
+  - Cloth4_boxing
+  - Clothmix_boxing
+  - Give
   layers:
   - Default
   - TransparentFX
