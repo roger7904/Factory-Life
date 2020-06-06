@@ -10,6 +10,10 @@ public class HomepageManager : MonoBehaviourPunCallbacks{
     //[SerializeField]
     public GameObject progressLabel;
 
+    public GameObject boycharacter;
+
+    public GameObject girlcharacter;
+
     private string gameVersion = "v0.0.1";
     private bool isConnecting;
 
@@ -25,6 +29,13 @@ public class HomepageManager : MonoBehaviourPunCallbacks{
         //Connect();
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
+        if(PlayerPrefs.GetString("playerName") == "boy"){
+            boycharacter.SetActive(true);
+            girlcharacter.SetActive(false);
+        }else{
+            boycharacter.SetActive(false);
+            girlcharacter.SetActive(true);
+        }
         // string defaultName = string.Empty;
         // if (PlayerPrefs.HasKey("playerName")){
         //     defaultName =  PlayerPrefs.GetString("playerName");

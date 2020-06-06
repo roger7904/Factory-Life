@@ -1546,6 +1546,8 @@ MonoBehaviour:
   maxPlayersPerRoom: 4
   controlPanel: {fileID: 443705747}
   progressLabel: {fileID: 930343966}
+  boycharacter: {fileID: 828854095}
+  girlcharacter: {fileID: 1350991913}
 --- !u!4 &1787477276
 Transform:
   m_ObjectHideFlags: 0
