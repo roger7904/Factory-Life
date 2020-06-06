@@ -29,7 +29,7 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     void Start(){
         isend=false;
         prompt.SetActive(false);
-        timef=45f;
+        timef=300f;
         PV=GetComponent<PhotonView>();
         instance=this;
         playerPrefName=PlayerPrefs.GetString("character");
