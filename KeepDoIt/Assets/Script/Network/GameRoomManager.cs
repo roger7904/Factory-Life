@@ -44,8 +44,6 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
 
     void Update(){
         if(isend){
-            joy.SetActive(false);
-            cast.SetActive(false);
             return;
         }
         if(timef<=0f){
@@ -88,6 +86,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
                         GameObject loseimg=Instantiate(win,new Vector3(ca.transform.position.x,ca.transform.position.y+2f,0),ca.transform.rotation);
                     }
                 }
+                joy.SetActive(false);
+                cast.SetActive(false);
                 StartCoroutine (delay());
             }
         }
@@ -107,14 +107,12 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     IEnumerator delay()
     {
         yield return new WaitForSeconds (3f);
-        if(PhotonNetwork.IsMasterClient){
-            PhotonNetwork.LoadLevel("TestHomepage");
-        }
+        PhotonNetwork.LeaveRoom();
     }
 
     // 玩家離開遊戲室時, 把他帶回到Lobby
     public override void OnLeftRoom(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("TestHomepage");
     } 
     public void LeaveRoom(){
         PhotonNetwork.LeaveRoom();
