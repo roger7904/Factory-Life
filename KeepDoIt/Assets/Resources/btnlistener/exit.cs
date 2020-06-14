@@ -19,6 +19,6 @@ public class exit : MonoBehaviour
     }
 
     public void OnClick(){
-        System.Environment.Exit(System.Environment.ExitCode);
+        Application.Quit();
     }
 }
