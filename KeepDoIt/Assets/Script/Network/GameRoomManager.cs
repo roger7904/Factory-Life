@@ -24,6 +24,15 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     public Text nameText;
     public Text teamText;
     public GameObject canvas;
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject b3;
+    public GameObject b4;
+    public GameObject b5;
+    public GameObject b6;
+    public GameObject b7;
+
+
 
     private string playerPrefName;
     void Start(){
@@ -150,6 +159,70 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
         prompt.SetActive(false);
         joy.SetActive(true);
         cast.SetActive(true);
+    }
+
+    public void voidb1(){
+        b1.SetActive(true);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb2(){
+        b1.SetActive(false);
+        b2.SetActive(true);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb3(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(true);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb4(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(true);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb5(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(true);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb6(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(true);
+        b7.SetActive(false);
+    }
+    public void voidb7(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(true);
     }
 }
 

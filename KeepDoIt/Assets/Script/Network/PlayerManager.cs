@@ -13,11 +13,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if(PrepareRoomManager.joinOrder==1 || PrepareRoomManager.joinOrder==2){
-            teamText.text="A";
-        }else{
-            teamText.text="B";
+        if (photonView.IsMine){
+            if(PrepareRoomManager.joinOrder==1 ){
+                teamText.text="A";
+            }else{
+                teamText.text="B";
+            }
         }
+        
         playerNameText.text=this.photonView.Owner.NickName;
     }
 }

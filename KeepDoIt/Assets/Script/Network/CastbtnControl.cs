@@ -372,7 +372,6 @@ public class CastbtnControl : MonoBehaviour
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix" && status=="none"){
-                        m();
                         status="clothmix";
                         PV.RPC("clothmix_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Carton_take" && status=="none"){
@@ -879,7 +878,6 @@ public class CastbtnControl : MonoBehaviour
                         status="clothmix";
                         PV.RPC("clothmixRPC", RpcTarget.AllBuffered,PlayerControl.ID,GOnumber);
                     }else if(hit.collider.transform.tag=="Clothmix" && status=="none"){
-                        m();
                         status="clothmix";
                         PV.RPC("clothmix_takeRPC", RpcTarget.AllBuffered,PlayerControl.ID,hit.collider.name,GOnumber);
                     }else if(hit.collider.transform.tag=="Carton_take" && status=="none"){
@@ -2544,6 +2542,8 @@ public class CastbtnControl : MonoBehaviour
                 insGO=cloth3_yello_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_yello"){
                 insGO=pai_ban_yello_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_mix"){
+                insGO=pai_ban_mix_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_green"){
                 insGO=pai_ban_green_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_purple"){
@@ -2653,6 +2653,8 @@ public class CastbtnControl : MonoBehaviour
                 insGO=cloth4_boxing_c;
             }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Clothmix_boxing"){
                 insGO=clothmix_boxing_c;
+            }else if(parentObject.GetComponent<Transform>().GetChild(1).gameObject.tag=="Pai_ban_mix"){
+                insGO=pai_ban_mix_c;
             }
         }
         if(parentObject.GetComponent<Transform>().childCount>1){
