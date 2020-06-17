@@ -67,6 +67,8 @@ TagManager:
   - Cloth4_boxing
   - Clothmix_boxing
   - Give
+  - Bullet
+  - Cast
   layers:
   - Default
   - TransparentFX

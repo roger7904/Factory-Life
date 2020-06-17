@@ -13,8 +13,8 @@ public class CastbtnControl : MonoBehaviour
     public static int teamApoint;
     public static int teamBpoint;
     public GameObject make;
-    public GameObject joy;
-    public GameObject cas;
+    private GameObject joy;
+    private GameObject cas;
 
     private RaycastHit2D[] hitarray;
     private string status;
@@ -161,6 +161,8 @@ public class CastbtnControl : MonoBehaviour
     }
     void Update(){
         playerGO = PhotonView.Find(PlayerControl.ID).gameObject;
+        joy=GameObject.FindGameObjectWithTag("Joystick");
+        cas=GameObject.FindGameObjectWithTag("Cast");
         teamApointText.text=""+teamApoint.ToString();
         teamBpointText.text=""+teamBpoint.ToString();
         if(make.activeSelf){

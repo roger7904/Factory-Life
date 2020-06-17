@@ -11,8 +11,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     public Text timeText;
     private float timef;
     public GameObject prompt;
-    public GameObject joy;
-    public GameObject cast;
+    private GameObject joy;
+    private GameObject cast;
     private bool isend;
     public GameObject b_win;
     public GameObject g_win;
@@ -52,6 +52,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     }
 
     void Update(){
+        joy=GameObject.FindGameObjectWithTag("Joystick");
+        cast=GameObject.FindGameObjectWithTag("Cast");
         if(isend){
             return;
         }
