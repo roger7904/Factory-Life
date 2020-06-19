@@ -116,7 +116,16 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
         yield return new WaitForSeconds (3f);
         PhotonNetwork.LeaveRoom();
     }
-
+    
+    public void runfun(){
+        PlayerControl.run=true;
+        StartCoroutine (delayrun());
+    }
+    IEnumerator delayrun()
+    {
+        yield return new WaitForSeconds (1f);
+        PlayerControl.run=false;
+    }
     // 玩家離開遊戲室時, 把他帶回到Lobby
     public override void OnLeftRoom(){
         SceneManager.LoadScene("TestHomepage");

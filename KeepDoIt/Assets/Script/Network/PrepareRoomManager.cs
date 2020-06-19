@@ -23,7 +23,7 @@ public class PrepareRoomManager : MonoBehaviourPunCallbacks{
         joinOrder=PhotonNetwork.CurrentRoom.PlayerCount;
         GameObject playerGO=PhotonNetwork.Instantiate(playerPrefName,spawnPoint[PrepareRoomManager.joinOrder-1].position,spawnPoint[PrepareRoomManager.joinOrder-1].rotation,0);
         //playerGO.transform.localScale=new Vector3(10,10,10);
-        // startButton.SetActive(true);
+        startButton.SetActive(true);
         
     }
 
