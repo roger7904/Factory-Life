@@ -69,6 +69,10 @@ TagManager:
   - Give
   - Bullet
   - Cast
+  - b1
+  - b2
+  - a1
+  - a2
   layers:
   - Default
   - TransparentFX
@@ -78,7 +82,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ground
   - 
   - 
   - 

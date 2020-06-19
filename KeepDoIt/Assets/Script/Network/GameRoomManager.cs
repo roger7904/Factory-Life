@@ -11,8 +11,8 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     public Text timeText;
     private float timef;
     public GameObject prompt;
-    private GameObject joy;
-    private GameObject cast;
+    public GameObject joy;
+    public GameObject cast;
     private bool isend;
     public GameObject b_win;
     public GameObject g_win;
@@ -22,7 +22,7 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     public GameObject lose;
     public GameObject ca;
     public Text nameText;
-    public Text teamText;
+ 
     public GameObject canvas;
     public GameObject b1;
     public GameObject b2;
@@ -38,22 +38,17 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     void Start(){
         isend=false;
         prompt.SetActive(false);
-        timef=45f;
+        timef=300f;
         PV=GetComponent<PhotonView>();
         instance=this;
         playerPrefName=PlayerPrefs.GetString("character");
         GameObject playerGO=PhotonNetwork.Instantiate(playerPrefName,spawnPoint[PrepareRoomManager.joinOrder-1].position,spawnPoint[PrepareRoomManager.joinOrder-1].rotation,0);
-        if(PrepareRoomManager.joinOrder==1 || PrepareRoomManager.joinOrder==2){
-            teamText.text="A";
-        }else{
-            teamText.text="B";
-        }
+        
         nameText.text=PlayerPrefs.GetString("playerName");
     }
 
     void Update(){
-        joy=GameObject.FindGameObjectWithTag("Joystick");
-        cast=GameObject.FindGameObjectWithTag("Cast");
+        
         if(isend){
             return;
         }
@@ -97,9 +92,10 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
                         GameObject loseimg=Instantiate(win,new Vector3(ca.transform.position.x,ca.transform.position.y+2f,0),ca.transform.rotation);
                     }
                 }
+                StartCoroutine (delay());
                 joy.SetActive(false);
                 cast.SetActive(false);
-                StartCoroutine (delay());
+                
             }
         }
         if (PhotonNetwork.IsMasterClient){
