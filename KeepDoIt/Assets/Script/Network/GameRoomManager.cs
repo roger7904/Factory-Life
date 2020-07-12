@@ -22,8 +22,17 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
     public GameObject lose;
     public GameObject ca;
     public Text nameText;
-    public Text teamText;
+ 
     public GameObject canvas;
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject b3;
+    public GameObject b4;
+    public GameObject b5;
+    public GameObject b6;
+    public GameObject b7;
+
+
 
     private string playerPrefName;
     void Start(){
@@ -34,15 +43,12 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
         instance=this;
         playerPrefName=PlayerPrefs.GetString("character");
         GameObject playerGO=PhotonNetwork.Instantiate(playerPrefName,spawnPoint[PrepareRoomManager.joinOrder-1].position,spawnPoint[PrepareRoomManager.joinOrder-1].rotation,0);
-        if(PrepareRoomManager.joinOrder==1 || PrepareRoomManager.joinOrder==2){
-            teamText.text="A";
-        }else{
-            teamText.text="B";
-        }
+        
         nameText.text=PlayerPrefs.GetString("playerName");
     }
 
     void Update(){
+        
         if(isend){
             return;
         }
@@ -86,9 +92,10 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
                         GameObject loseimg=Instantiate(win,new Vector3(ca.transform.position.x,ca.transform.position.y+2f,0),ca.transform.rotation);
                     }
                 }
+                StartCoroutine (delay());
                 joy.SetActive(false);
                 cast.SetActive(false);
-                StartCoroutine (delay());
+                
             }
         }
         if (PhotonNetwork.IsMasterClient){
@@ -109,7 +116,16 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
         yield return new WaitForSeconds (3f);
         PhotonNetwork.LeaveRoom();
     }
-
+    
+    public void runfun(){
+        PlayerControl.run=true;
+        StartCoroutine (delayrun());
+    }
+    IEnumerator delayrun()
+    {
+        yield return new WaitForSeconds (1f);
+        PlayerControl.run=false;
+    }
     // 玩家離開遊戲室時, 把他帶回到Lobby
     public override void OnLeftRoom(){
         SceneManager.LoadScene("TestHomepage");
@@ -150,6 +166,70 @@ public class GameRoomManager : MonoBehaviourPunCallbacks{
         prompt.SetActive(false);
         joy.SetActive(true);
         cast.SetActive(true);
+    }
+
+    public void voidb1(){
+        b1.SetActive(true);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb2(){
+        b1.SetActive(false);
+        b2.SetActive(true);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb3(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(true);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb4(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(true);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb5(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(true);
+        b6.SetActive(false);
+        b7.SetActive(false);
+    }
+    public void voidb6(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(true);
+        b7.SetActive(false);
+    }
+    public void voidb7(){
+        b1.SetActive(false);
+        b2.SetActive(false);
+        b3.SetActive(false);
+        b4.SetActive(false);
+        b5.SetActive(false);
+        b6.SetActive(false);
+        b7.SetActive(true);
     }
 }
 

@@ -17,4 +17,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameRoom.unity
     guid: d9c05fcfff837914a9112e9dfbbcd890
+  - enabled: 1
+    path: Assets/Scenes/teachingscene.unity
+    guid: ce0ef66c2dd7963428acc6d266bae0c7
+  - enabled: 1
+    path: Assets/Scenes/teaching2.unity
+    guid: 2099cf2609cc9af4f898e16283c4c8ca
+  - enabled: 1
+    path: Assets/Scenes/teaching3.unity
+    guid: a2455c726f936f645bceade4c8ba86d5
+  - enabled: 1
+    path: Assets/Scenes/teaching4.unity
+    guid: 2672361da74f6264d9c868417960619f
+  - enabled: 1
+    path: Assets/Scenes/teaching5.unity
+    guid: 29dfb63f8077e124480f1df586674226
+  - enabled: 1
+    path: Assets/Scenes/teaching6.unity
+    guid: 35a01733c6a255a498d18b83f4721d94
+  - enabled: 1
+    path: Assets/Scenes/teaching7.unity
+    guid: 07177a673c29f9e479c5ed5363ef1b9d
+  - enabled: 1
+    path: Assets/Scenes/teaching8.unity
+    guid: 18bd1551e066f0c47be110dc7ace1c45
   m_configObjects: {}

@@ -163,6 +163,14 @@ MonoBehaviour:
   - clothmix_pai_ban_pointRPC
   - clothmix_pointRPC
   - pai_ban_red_pointRPC
+  - anumberRPC
+  - bnumberRPC
+  - anumber2RPC
+  - bnumber2RPC
+  - name1RPC
+  - name2RPC
+  - name3RPC
+  - name4RPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

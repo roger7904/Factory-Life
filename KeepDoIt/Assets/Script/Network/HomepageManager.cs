@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class HomepageManager : MonoBehaviourPunCallbacks{
     [SerializeField]
@@ -29,7 +30,7 @@ public class HomepageManager : MonoBehaviourPunCallbacks{
         //Connect();
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);
-        if(PlayerPrefs.GetString("playerName") == "boy"){
+        if(PlayerPrefs.GetString("character") == "boy"){
             boycharacter.SetActive(true);
             girlcharacter.SetActive(false);
         }else{
@@ -90,7 +91,12 @@ public class HomepageManager : MonoBehaviourPunCallbacks{
             PhotonNetwork.LoadLevel("TestPrepareRoom");
         }
     }
-
+    public void exit(){
+        Application.Quit();
+    }
+    public void teach(){
+        SceneManager.LoadScene("teachingscene");
+    }
     // public void ChoosePlayer1(){
     //     PrepareRoom.playerPrefName="player1";
     //     PrepareRoom.playerPrefName="player1";
