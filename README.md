@@ -23,12 +23,10 @@
 2. [Backend Server](#backendserver)
 3. [Database](#database)
 4. [Demo](#demo)
-5. [Document](#document)
-6. [Architecture](#architecture)
 
 <h2 id="features">Features</h2>
 
-我們以google map及google place API為主，以地圖的形式讓使用者對活動所在地更加視覺化，並利用定位功能偵測使用者所在位置，協助其完成報到，避免參與者實際上未到活動地點卻報到的情況。另外，此APP也包含群組聊天室、評價等功能，來輔助活動的進行及後續發展，期望能提供使用者完善的活動機制，讓使用者在舉辦及參與活動上有更方便的管道。
+我們的特色是透過簡易的遊玩方式，讓玩家們可以進行策略型的競爭，並且可以互相干擾對方行動，透過多人同時遊玩的派對遊戲形式提升玩家對於此遊戲的好感度。
 
 <h2 id="backendserver">Backend Server</h2>
 
