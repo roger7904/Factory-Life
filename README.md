@@ -1,9 +1,9 @@
-# <div align="center"><img src="docs/logo.jpg" alt="icon" width=30> Factory Life</div>
+# <div align="center"><img src="docs/logo.jpg" alt="icon" width=60> Factory Life</div>
 
 <div align="center">............................................
 
 
-![C#](https://img.shields.io/badge/C#-Language-purple?logo=c#)
+![C#](https://img.shields.io/badge/C%23-Language-blueviolet?logo=c#)
 ![Unity](https://img.shields.io/badge/Unity-Platform-black?logo=unity)
 
 
