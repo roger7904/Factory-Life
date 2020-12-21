@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 9ae938e0-1161-4d0a-9419-bf0c4a04c1e7
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
@@ -25,152 +25,140 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: us
-  PunLogging: 2
+  DevRegion: 
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - testRPC
-  - cloth1RPC
-  - conveyorRPC
-  - cloth1_takeRPC
-  - cloth2_takeRPC
-  - cloth2RPC
-  - cloth3_takeRPC
-  - cloth3RPC
-  - cloth4_takeRPC
-  - cloth4RPC
-  - blueRPC
-  - greenRPC
-  - redRPC
-  - cloth1_blueRPC
-  - cloth1_greenRPC
-  - cloth1_redRPC
-  - cloth2_blueRPC
-  - cloth2_greenRPC
-  - cloth2_redRPC
-  - cloth3_blueRPC
-  - cloth3_greenRPC
-  - cloth3_redRPC
-  - cloth4_blueRPC
-  - cloth4_greenRPC
-  - cloth4_redRPC
   - blueyeing1RPC
   - blueyeing2RPC
   - blueyeing3RPC
   - blueyeing4RPC
+  - carton_takeRPC
+  - cartonRPC
+  - ClickRpc
+  - cloth1_blue_pointRPC
+  - cloth1_blueRPC
+  - cloth1_boxing_pointRPC
+  - cloth1_boxing_takeRPC
+  - cloth1_boxingRPC
+  - cloth1_done_takeRPC
+  - cloth1_doneRPC
+  - cloth1_green_pointRPC
+  - cloth1_greenRPC
+  - cloth1_pai_ban_pointRPC
+  - cloth1_pai_ban_takeRPC
+  - cloth1_pai_banRPC
+  - cloth1_pointRPC
+  - cloth1_red_pointRPC
+  - cloth1_redRPC
+  - cloth1_tailor_takeRPC
+  - cloth1_tailorRPC
+  - cloth1_takeRPC
+  - cloth1RPC
+  - cloth2_blue_pointRPC
+  - cloth2_blueRPC
+  - cloth2_boxing_pointRPC
+  - cloth2_boxing_takeRPC
+  - cloth2_boxingRPC
+  - cloth2_done_takeRPC
+  - cloth2_doneRPC
+  - cloth2_green_pointRPC
+  - cloth2_greenRPC
+  - cloth2_pai_ban_pointRPC
+  - cloth2_pai_ban_takeRPC
+  - cloth2_pai_banRPC
+  - cloth2_pointRPC
+  - cloth2_red_pointRPC
+  - cloth2_redRPC
+  - cloth2_tailor_takeRPC
+  - cloth2_tailorRPC
+  - cloth2_takeRPC
+  - cloth2RPC
+  - cloth3_blue_pointRPC
+  - cloth3_blueRPC
+  - cloth3_boxing_pointRPC
+  - cloth3_boxing_takeRPC
+  - cloth3_boxingRPC
+  - cloth3_done_takeRPC
+  - cloth3_doneRPC
+  - cloth3_green_pointRPC
+  - cloth3_greenRPC
+  - cloth3_pai_ban_pointRPC
+  - cloth3_pai_ban_takeRPC
+  - cloth3_pai_banRPC
+  - cloth3_pointRPC
+  - cloth3_red_pointRPC
+  - cloth3_redRPC
+  - cloth3_tailor_takeRPC
+  - cloth3_tailorRPC
+  - cloth3_takeRPC
+  - cloth3_yello_pointRPC
+  - cloth3_yello_takeRPC
+  - cloth3_yelloRPC
+  - cloth3RPC
+  - cloth4_blue_pointRPC
+  - cloth4_blueRPC
+  - cloth4_boxing_pointRPC
+  - cloth4_boxing_takeRPC
+  - cloth4_boxingRPC
+  - cloth4_done_takeRPC
+  - cloth4_doneRPC
+  - cloth4_green_pointRPC
+  - cloth4_greenRPC
+  - cloth4_pai_ban_pointRPC
+  - cloth4_pai_ban_takeRPC
+  - cloth4_pai_banRPC
+  - cloth4_pointRPC
+  - cloth4_purple_pointRPC
+  - cloth4_purple_takeRPC
+  - cloth4_purpleRPC
+  - cloth4_red_pointRPC
+  - cloth4_redRPC
+  - cloth4_tailor_takeRPC
+  - cloth4_tailorRPC
+  - cloth4_takeRPC
+  - cloth4RPC
+  - clothmix_boxing_pointRPC
+  - clothmix_boxing_takeRPC
+  - clothmix_boxingRPC
+  - clothmix_doneRPC
+  - clothmix_pai_ban_pointRPC
+  - clothmix_pai_ban_takeRPC
+  - clothmix_pai_banRPC
+  - clothmix_pointRPC
+  - clothmix_tailor_takeRPC
+  - clothmix_tailorRPC
+  - clothmix_takeRPC
+  - clothmixRPC
+  - conveyorRPC
+  - da_ban_takeRPC
+  - da_banRPC
+  - DestroyRpc
+  - DestroySpaceship
+  - Fire
   - greenyeing1RPC
   - greenyeing2RPC
   - greenyeing3RPC
   - greenyeing4RPC
-  - redyeing1RPC
-  - redyeing2RPC
-  - redyeing3RPC
-  - redyeing4RPC
-  - clothmix_takeRPC
-  - clothmixRPC
-  - carton_takeRPC
-  - cartonRPC
-  - trashcanRPC
-  - da_ban_takeRPC
-  - da_banRPC
-  - pai_ban_takeRPC
-  - pai_banRPC
-  - workRPC
-  - cloth1_pai_ban_takeRPC
-  - cloth1_pai_banRPC
-  - cloth1_tailor_takeRPC
-  - cloth1_tailorRPC
-  - cloth1_done_takeRPC
-  - cloth1_doneRPC
-  - renameRPC
-  - clothmix_pai_ban_takeRPC
-  - clothmix_pai_banRPC
-  - clothmix_tailor_takeRPC
-  - clothmix_done_takeRPC
-  - clothmix_doneRPC
-  - clothmix_tailorRPC
-  - cloth2_pai_banRPC
-  - cloth2_done_takeRPC
-  - cloth2_doneRPC
-  - cloth2_pai_ban_takeRPC
-  - cloth2_tailor_takeRPC
-  - cloth2_tailorRPC
-  - cloth4_purple_takeRPC
-  - cloth4_purpleRPC
-  - cloth2_yello_takeRPC
-  - cloth2_yelloRPC
-  - cloth3_yello_takeRPC
-  - cloth3_yelloRPC
-  - cloth3_done_takeRPC
-  - cloth3_doneRPC
-  - cloth3_pai_ban_takeRPC
-  - cloth3_pai_banRPC
-  - cloth3_tailor_takeRPC
-  - cloth3_tailorRPC
-  - cloth4_done_takeRPC
-  - cloth4_doneRPC
-  - cloth4_pai_ban_takeRPC
-  - cloth4_pai_banRPC
-  - cloth4_tailor_takeRPC
-  - cloth4_tailorRPC
-  - pai_ban_redRPC
-  - red_pai_ban_takeRPC
-  - timeRPC
-  - cloth1_boxingRPC
-  - cloth2_boxingRPC
-  - cloth3_boxingRPC
-  - cloth4_boxingRPC
-  - clothmix_boxingRPC
-  - cloth1_boxing_takeRPC
-  - cloth2_boxing_takeRPC
-  - cloth3_boxing_takeRPC
-  - cloth4_boxing_takeRPC
-  - clothmix_boxing_takeRPC
-  - cloth1_blue_pointRPC
-  - cloth1_green_pointRPC
-  - cloth1_red_pointRPC
-  - cloth2_blue_pointRPC
-  - cloth2_green_pointRPC
-  - cloth2_red_pointRPC
-  - cloth3_blue_pointRPC
-  - cloth3_green_pointRPC
-  - cloth3_red_pointRPC
-  - cloth3_yello_pointRPC
-  - cloth4_blue_pointRPC
-  - cloth4_green_pointRPC
-  - cloth4_purple_pointRPC
-  - cloth4_red_pointRPC
-  - cloth1_boxing_pointRPC
-  - cloth1_pai_ban_pointRPC
-  - cloth1_pointRPC
-  - cloth2_boxing_pointRPC
-  - cloth2_pai_ban_pointRPC
-  - cloth2_pointRPC
-  - cloth3_boxing_pointRPC
-  - cloth3_pai_ban_pointRPC
-  - cloth3_pointRPC
-  - cloth4_boxing_pointRPC
-  - cloth4_pai_ban_pointRPC
-  - cloth4_pointRPC
-  - clothmix_boxing_pointRPC
-  - clothmix_pai_ban_pointRPC
-  - clothmix_pointRPC
-  - pai_ban_red_pointRPC
-  - anumberRPC
-  - bnumberRPC
-  - anumber2RPC
-  - bnumber2RPC
   - name1RPC
   - name2RPC
   - name3RPC
   - name4RPC
+  - pai_ban_red_pointRPC
+  - pai_ban_redRPC
+  - pai_ban_takeRPC
+  - pai_banRPC
+  - red_pai_ban_takeRPC
+  - redyeing1RPC
+  - redyeing2RPC
+  - redyeing3RPC
+  - redyeing4RPC
+  - RespawnSpaceship
+  - timeRPC
+  - trashcanRPC
+  - workRPC
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
-  DevRegionSetOnce: 1
+  ShowSettings: 0
+  DevRegionSetOnce: 0
