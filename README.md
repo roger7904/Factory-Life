@@ -8,6 +8,8 @@
 
 </div>
 
+<a href='#'><img alt='home' src='docs/home.png'/></a>
+
 ***
 
 ### Introducing Factory Life
