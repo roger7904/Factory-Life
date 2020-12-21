@@ -1,4 +1,4 @@
-# <div align="center"><img src="docs/logo.png" alt="icon" width=30> Factory Life</div>
+# <div align="center"><img src="docs/logo.png" alt="icon" width=40> Factory Life</div>
 <div align="center">............................................
 
 
