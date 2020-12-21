@@ -8,7 +8,9 @@
 
 </div>
 
+<div align="center">
 <a href='#'><img alt='home' src='docs/home.png'/></a>
+</div>
 
 ***
 
