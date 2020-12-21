@@ -1,6 +1,5 @@
 # <div align="center"><img src="docs/logo.png" alt="icon" width=40> Factory Life</div>
-<div align="center">............................................
-
+<div align="center">此APP是一款2v2連線的合作類型競技遊戲，玩家要在有限時間內完成衣服工廠作業線上不同類型的事物以獲取分數，簡單的遊玩方式，考驗的是與隊友間的配合與策略。
 
 ![C#](https://img.shields.io/badge/C%23-Language-blueviolet)
 ![Unity](https://img.shields.io/badge/Unity-Platform-black?logo=unity)
@@ -17,10 +16,6 @@
 </div>
 
 ***
-
-### Introducing Factory Life
-
-...........................
 
 ## List of Contents
 
