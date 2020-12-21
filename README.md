@@ -3,7 +3,7 @@
 <div align="center">............................................
 
 
-![C#](https://img.shields.io/badge/C%23-Language-blueviolet?logo=c#)
+![C#](https://img.shields.io/badge/C%23-Language-blueviolet)
 ![Unity](https://img.shields.io/badge/Unity-Platform-black?logo=unity)
 
 
