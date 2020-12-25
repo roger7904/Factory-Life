@@ -32,7 +32,7 @@
 
 我們使用Photon Server作為我們的backend server，用此建立玩家間的連線，同步玩家的狀態。
 
-<h2 id="database">Databaser</h2>
+<h2 id="database">Database</h2>
 
 Database我們使用SQLite來存取使用者的資料，透過SQLite將使用者的角色選擇、玩家名稱等等狀態存放在使用者的local端。
 
