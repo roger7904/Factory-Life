@@ -38,3 +38,9 @@ Database我們使用SQLite來存取使用者的資料，透過SQLite將使用者
 
 <h2 id="demo">Demo</h2>
 
+![gif1](docs/gif1.gif)
+![gif2](docs/gif2.gif)
+![gif3](docs/gif3.gif)
+![gif4](docs/gif4.gif)
+![gif5](docs/gif5.gif)
+
