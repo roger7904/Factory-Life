@@ -38,9 +38,10 @@ Database我們使用SQLite來存取使用者的資料，透過SQLite將使用者
 
 <h2 id="demo">Demo</h2>
 
-<img src="docs/gif1.gif" width="412" height="200"/><br/ >   
-<img src="docs/gif2.gif" width="412" height="200"/><br/ >   
-<img src="docs/gif3.gif" width="412" height="200"/><br/ >   
-<img src="docs/gif4.gif" width="412" height="200"/><br/ >   
-<img src="docs/gif5.gif" width="412" height="200"/><br/ >   
+![gif1](docs/gif1.gif)
+![gif2](docs/gif2.gif)
+![gif3](docs/gif3.gif)
+![gif4](docs/gif4.gif)
+![gif5](docs/gif5.gif)
+
 
